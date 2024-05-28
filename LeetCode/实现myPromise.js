@@ -15,7 +15,7 @@ class MyPromise {
     const reject = (value) => {
       if (this.state === 'pending') {
         this.value = value
-        this.state = 'fulfilled'
+        this.state = 'rejected'
         this.handlers.forEach((handler) => handler.onRejected(value))
       }
     }
@@ -35,7 +35,7 @@ class MyPromise {
           if (res instanceof MyPromise) {
             res.then(resolve, reject)
           } else {
-            resolve(reject)
+            resolve(res)
           }
         } catch (e) {
           reject(e)
