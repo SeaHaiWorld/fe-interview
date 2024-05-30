@@ -16,3 +16,22 @@ function permute(nums: number[]) {
     backTrack([], nums);
     return res;
 }
+
+
+function permuteArr(nums: number[]) {
+    let res: number[][] = []
+
+    function backTrack(arr: number[], remain: number[]) {
+        if (remain.length === 0) {
+            res.push([...arr])
+        }
+
+        for (let i = 0; i < remain.length; i++) {
+            let newRemaining = [...remain.slice(0, i), ...remain.slice(i+1)]
+            backTrack(arr.concat(remain[i]), newRemaining)
+        }
+    }
+
+    backTrack([], nums)
+    return res
+}
