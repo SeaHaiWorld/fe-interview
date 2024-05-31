@@ -18,13 +18,13 @@ Function.prototype.myCall = function (context: any, ...args: any[]): any {
     return result;
 }
 
-Function.prototype.myApply = function (context: any, ...argsArr: any[]): any {
+Function.prototype.myApply = function (context: any, argsArr: any[]): any {
     context = context || window
     let uniqueKey = Symbol()
 
     context[uniqueKey] = this;
 
-    const result = context[uniqueKey](...argsArr);
+    const result = context[uniqueKey](...(argsArr || []));
 
     // 删除临时方法
     delete context[uniqueKey];
