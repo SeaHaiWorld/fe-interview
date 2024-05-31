@@ -36,6 +36,7 @@ var findNumberIn2DArray = function(matrix, target) {
     return false
 };
 
+// 只用一次循环实现
 /**
  * @param {number[][]} matrix
  * @param {number} target
@@ -58,5 +59,35 @@ var findNumberIn2DArray = function(matrix, target) {
             right++
         }
     }
+    return false
+};
+
+// 只用一次循环实现
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var findNumberIn2DArray = function(matrix, target) {
+    if (!matrix || matrix.length === 0 || matrix[0].length === 0){
+        return false
+    }
+
+    let rows = matrix.length
+    let cols = matrix[0].length
+    let row = 0
+    let col = cols - 1
+    while (row < rows && col >= 0) {
+        if (matrix[row][col] === target) {
+            return true
+        }
+
+        if (matrix[row][col] > target) {
+            col --
+        } else {
+            row++
+        }
+    }
+
     return false
 };
